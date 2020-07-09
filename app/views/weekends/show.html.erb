@@ -1,0 +1,17 @@
+<%= @weekend.gp_title %>
+<br><br>
+<%= @weekend.location %>
+<br><br>
+<%= @weekend.timespan %>
+<br><br><br>
+
+Events:<br><br><br>
+<% @events.each do |day, events| %>
+  <%= day %>
+  <br><br>
+  <% events.each do |event| %>
+    <%= "#{event.racing_class} #{event.name} -- #{event.circuit_time} (#{event.start_time.strftime("%H:%M")} local)" %>
+    <br><br>
+  <% end %>
+  <br>
+<% end %>

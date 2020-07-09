@@ -1,0 +1,4 @@
+<% @weekends.each do |weekend| %>
+  <%= link_to "#{weekend.gp_title} - #{weekend.timespan}", weekend_path(weekend) %>
+  <br><br>
+<% end %>
