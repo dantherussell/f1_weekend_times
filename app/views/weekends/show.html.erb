@@ -10,7 +10,7 @@ Events:<br><br><br>
   <%= day %>
   <br><br>
   <% events.each do |event| %>
-    <%= "#{event.racing_class} #{event.name} -- #{event.circuit_time} (#{event.start_time.strftime("%H:%M")} local)" %>
+    <%= "#{event.racing_class} #{event.name} -- #{event.circuit_time} (#{event.start_time.to_datetime.new_offset(Time.now.zone).strftime("%H:%M")} local)" %>
     <br><br>
   <% end %>
   <br>
