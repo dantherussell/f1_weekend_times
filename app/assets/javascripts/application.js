@@ -10,9 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require js.cookie
-//= require browser_timezone_rails/set_time_zone
 //= require rails-ujs
+//= require local-time
 //= require activestorage
 //= require turbolinks
 //= require_tree .
