@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: "weekends#index"
 
-  resources :weekends, only: [:index, :show]
+  resources :weekends do
+    resources :events, except: [:index, :show]
+  end
 end

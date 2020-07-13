@@ -1,0 +1,41 @@
+<%= form_for [@weekend, @event] do |f| %>
+  <% if @event.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.label :racing_class %> (e.g. "Formula 1")
+    <div>
+      <%= f.text_field :racing_class, class: 'form-control' %>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <%= f.label :name %> (e.g. "Free Practice 1")
+    <div>
+    <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <%= f.label :start_time %> in UTC
+    <div>
+    <%= f.datetime_select :start_time, class: 'form-control' %>
+    </div>
+  </div><br>
+  <br>
+  <div class="form-group">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br>
+Admin functions use a cookie but I store zero information besides that you've logged in here. Check the source code if you want to be sure.
