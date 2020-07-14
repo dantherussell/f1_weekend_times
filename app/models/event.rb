@@ -1,4 +1,12 @@
 class Event < ApplicationRecord
+  RACING_CLASSES = ["Formula 1", "Formula 2", "Formula 3", "Porsche Supercup"].freeze
+  NAMES = {
+    "Formula 1" => ["Free Practice 1", "Free Practice 2", "Free Practice 3", "Qualifying", "Race"],
+    "Formula 2" => ["Practice", "Qualifying", "Feature Race", "Sprint Race"],
+    "Formula 3" => ["Practice", "Qualifying", "Race 1", "Race 2"],
+    "Porsche Supercup" => ["Practice", "Qualifying", "Race"],
+  }
+
   belongs_to :weekend
 
   def circuit_time

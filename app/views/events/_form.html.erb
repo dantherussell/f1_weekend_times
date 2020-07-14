@@ -14,21 +14,44 @@
   <br>
 
   <div class="form-group">
-    <%= f.label :racing_class %> (e.g. "Formula 1")
+    <%= f.label :racing_class %>
     <div>
-      <%= f.text_field :racing_class, class: 'form-control' %>
+      <%= f.select :racing_class, Event::RACING_CLASSES, class: 'form-control' %>
     </div>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :name %> (e.g. "Free Practice 1")
+  </div>
+  <br>
+  <div class="event-names form-group" id="formula_1_names">
+    <%= f.label :name %>
     <div>
-    <%= f.text_field :name, class: 'form-control' %>
+      <%= f.select :name, Event::NAMES["Formula 1"], class: 'form-control', disabled: false %>
     </div>
-  </div><br>
+    <br>
+  </div>
+  <div class="event-names form-group" id="formula_2_names">
+    <%= f.label :name %>
+    <div>
+      <%= f.select :name, Event::NAMES["Formula 2"], class: 'form-control', disabled: true %>
+    </div>
+    <br>
+  </div>
+  <div class="event-names form-group" id="formula_3_names">
+    <%= f.label :name %>
+    <div>
+      <%= f.select :name, Event::NAMES["Formula 3"], class: 'form-control', disabled: true %>
+    </div>
+    <br>
+  </div>
+  <div class="event-names form-group" id="porsche_names">
+    <%= f.label :name %>
+    <div>
+      <%= f.select :name, Event::NAMES["Porsche Supercup"], class: 'form-control', disabled: true %>
+    </div>
+    <br>
+  </div>
   <div class="form-group">
     <%= f.label :start_time %> in UTC
     <div>
-    <%= f.datetime_select :start_time, class: 'form-control' %>
+      <%= f.datetime_select :start_time, class: 'form-control' %>
     </div>
   </div><br>
   <br>
@@ -39,3 +62,31 @@
 
 <br>
 Admin functions use a cookie but I store zero information besides that you've logged in here. Check the source code if you want to be sure.
+
+<script>
+  $("select#event_racing_class").bind("change", function() {
+    $(".event-names").hide();
+    $(".event-names select").attr("disabled", true);
+    var selection = $(this).val();
+    switch(selection) {
+      case "Formula 1":
+        $("#formula_1_names").show();
+        $("#formula_1_names select").attr("disabled", false);
+        break;
+      case "Formula 2":
+        $("#formula_2_names").show();
+        $("#formula_2_names select").attr("disabled", false);
+        break;
+      case "Formula 3":
+        $("#formula_3_names").show();
+        $("#formula_3_names select").attr("disabled", false);
+        break;
+      case "Porsche Supercup":
+        $("#porsche_names").show();
+        $("#porsche_names select").attr("disabled", false);
+        break;
+      default:
+        break;
+    }
+  }).change();
+</script>
