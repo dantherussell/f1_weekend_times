@@ -7,7 +7,7 @@ class WeekendsController < ApplicationController
 
   def show
     @weekend = Weekend.find(params[:id])
-    @events = @weekend.events.group_by { |e| e.start_time.strftime("%A %dth %B") }
+    @events = @weekend.events.group_by { |e| e.start_time.strftime("%A #{e.start_time.day.ordinalize} %B") }
   end
 
   def new
