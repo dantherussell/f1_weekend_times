@@ -1,0 +1,22 @@
+@font-face {
+   font-family: 'f1-bold';
+   src: font-url("FORMULA1-BOLD.OTF");
+}
+
+@font-face {
+   font-family: 'f1-regular';
+   src: font-url("FORMULA1-REGULAR.OTF");
+}
+
+@font-face {
+   font-family: 'f1-wide';
+   src: font-url("FORMULA1-WIDE.OTF");
+}
+
+.event-names {
+  display: none;
+}
+
+body {
+  font-family: 'f1-regular';
+}
