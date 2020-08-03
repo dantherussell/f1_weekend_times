@@ -5,6 +5,11 @@
   <br><br>
 <% end %>
 <br><br>
-<%= link_to "New Weekend", new_weekend_path %>
+<% if Rails.env.production? && !cookies[:authed] %>
+  <%= link_to "Authenticate", auth_path %>
+<% end %>
+<% if cookies[:authed] %>
+  <%= link_to "New Weekend", new_weekend_path %>
+<% end %>
 <br><br>
 Admin functions use a cookie but I store zero information besides that you've logged in here. Check the source code if you want to be sure.

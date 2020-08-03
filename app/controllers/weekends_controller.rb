@@ -1,8 +1,12 @@
 class WeekendsController < ApplicationController
-  before_action :authenticate, only: %i(destroy edit new create update)
+  before_action :authenticate, only: %i(destroy edit new create update auth)
 
   def index
     @weekends = Weekend.all
+  end
+
+  def auth
+    redirect_to :weekends
   end
 
   def show

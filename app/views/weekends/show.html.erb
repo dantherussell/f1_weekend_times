@@ -7,14 +7,19 @@
   <h4><%= day %></h4>
 
   <% events.each do |event| %>
-    <%= "#{event.racing_class} #{event.name} -- #{event.circuit_time}" %> (<%= local_time(event.start_time, "%H:%M") %> local) | <%= link_to "Edit", edit_weekend_event_path(@weekend, event) %> | <%= link_to "Delete", weekend_event_path(@weekend, event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %>
+    <%= "#{event.racing_class} #{event.name} -- #{event.circuit_time}" %> (<%= local_time(event.start_time, "%H:%M") %> local)
+    <% if cookies[:authed] %>
+       | <%= link_to "Edit", edit_weekend_event_path(@weekend, event) %> | <%= link_to "Delete", weekend_event_path(@weekend, event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %>
+    <% end %>
     <br><br>
   <% end %>
 <% end %>
 
-<%= link_to "New Event", new_weekend_event_path(@weekend) %> |
-<%= link_to "Edit Weekend", edit_weekend_path(@weekend) %> |
-<%= link_to "Delete Weekend", weekend_path(@weekend), method: :delete, data: { confirm: "Are you sure you want to delete this weekend?" } %>
+<% if cookies[:authed] %>
+  <%= link_to "New Event", new_weekend_event_path(@weekend) %> |
+  <%= link_to "Edit Weekend", edit_weekend_path(@weekend) %> |
+  <%= link_to "Delete Weekend", weekend_path(@weekend), method: :delete, data: { confirm: "Are you sure you want to delete this weekend?" } %>
+<% end %>
 <br><br>
 
 Admin functions use a cookie but I store zero information besides that you've logged in here. Check the source code if you want to be sure.
