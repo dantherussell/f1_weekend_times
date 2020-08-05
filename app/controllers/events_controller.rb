@@ -40,6 +40,6 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:racing_class, :name, :start_time)
+      params.require(:event).permit(:racing_class, :name, :start_time_date_field, :start_time_time_field)
     end
 end

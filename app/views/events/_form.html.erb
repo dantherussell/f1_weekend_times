@@ -49,11 +49,19 @@
     <br>
   </div>
   <div class="form-group">
+    Date
+    <div>
+      <%= f.date_field :start_time_date_field, class: 'form-control' %>
+    </div>
+    <br>
+  </div>
+  <div class="form-group">
     <%= f.label :start_time %> in UTC
     <div>
-      <%= f.datetime_field :start_time, class: 'flatpickr-input form-control' %>
+      <%= f.time_field :start_time_time_field, class: 'form-control' %>
     </div>
-  </div><br>
+    <br>
+  </div>
   <br>
   <div class="form-group">
     <%= f.submit %>
