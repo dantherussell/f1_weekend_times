@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   def create
     @event = @weekend.events.new(event_params)
     if @event.save
-      redirect_to weekend_path(@weekend), notice: 'event was successfully created.'
+      redirect_to season_weekend_path(@season, @weekend), notice: 'event was successfully created.'
     else
       render 'new'
     end
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to weekend_path(@weekend), notice: 'event was successfully updated.'
+      redirect_to season_weekend_path(@season, @weekend), notice: 'event was successfully updated.'
     else
       render 'edit'
     end
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to weekend_path(@weekend), notice: 'event was successfully deleted.'
+    redirect_to season_weekend_path(@season, @weekend), notice: 'event was successfully deleted.'
   end
 
   private
