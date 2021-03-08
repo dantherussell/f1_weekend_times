@@ -9,15 +9,15 @@
   <% events.each do |event| %>
     <%= "#{event.racing_class} #{event.name} -- #{event.circuit_time} track time" %> (<%= local_time(event.start_time, "%H:%M") %> your local time)
     <% if cookies[:authed] %>
-       | <%= link_to "Edit", edit_weekend_event_path(@weekend, event) %> | <%= link_to "Delete", weekend_event_path(@weekend, event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %>
+       | <%= link_to "Edit", edit_season_weekend_event_path(@season, @weekend, event) %> | <%= link_to "Delete", season_weekend_event_path(@season, @weekend, event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %>
     <% end %>
     <br><br>
   <% end %>
 <% end %>
 
 <% if cookies[:authed] %>
-  <%= link_to "New Event", new_weekend_event_path(@weekend) %> |
-  <%= link_to "Edit Weekend", edit_weekend_path(@weekend) %> |
-  <%= link_to "Delete Weekend", weekend_path(@weekend), method: :delete, data: { confirm: "Are you sure you want to delete this weekend?" } %>
+  <%= link_to "New Event", new_season_weekend_event_path(@season, @weekend) %> |
+  <%= link_to "Edit Weekend", edit_season_weekend_path(@season, @weekend) %> |
+  <%= link_to "Delete Weekend", season_weekend_path(@season, @weekend), method: :delete, data: { confirm: "Are you sure you want to delete this weekend?" } %>
 <% end %>
 <br><br>

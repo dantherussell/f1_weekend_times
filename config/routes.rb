@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  root to: "weekends#index"
-  get 'auth' => 'weekends#auth'
+  root to: "seasons#index"
+  get 'auth' => 'seasons#auth'
 
-  resources :weekends do
-    resources :events, except: [:index, :show]
+  resources :seasons do
+    resources :weekends, except: [:index] do
+      resources :events, except: [:index, :show]
+    end
   end
 end

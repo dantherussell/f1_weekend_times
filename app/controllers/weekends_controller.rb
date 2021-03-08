@@ -1,53 +1,50 @@
 class WeekendsController < ApplicationController
-  before_action :authenticate, only: %i(destroy edit new create update auth)
-
-  def index
-    @weekends = Weekend.all
-  end
-
-  def auth
-    redirect_to :weekends
-  end
+  before_action :get_season
+  before_action :authenticate, only: %i(destroy edit new create update)
 
   def show
-    @weekend = Weekend.find(params[:id])
+    @weekend = @season.weekends.find(params[:id])
     @events = @weekend.events.order('start_time ASC').group_by { |e| e.start_time.strftime("%A #{e.start_time.day.ordinalize} %B") }
   end
 
   def new
-    @weekend = Weekend.new
+    @weekend = @season.weekends.new
   end
 
   def edit
-    @weekend = Weekend.find(params[:id])
+    @weekend = @season.weekends.find(params[:id])
   end
 
   def create
-    @weekend = Weekend.new(weekend_params)
+    @weekend = @season.weekends.new(weekend_params)
     if @weekend.save
-      redirect_to weekends_path, notice: 'weekend was successfully created.'
+      redirect_to season_weekends_path(@season), notice: 'weekend was successfully created.'
     else
       render 'new'
     end
   end
 
   def update
-    @weekend = Weekend.find(params[:id])
+    @weekend = @season.weekends.find(params[:id])
     if @weekend.update(weekend_params)
-      redirect_to weekend_path(@weekend), notice: 'weekend was successfully updated.'
+      redirect_to season_weekend_path(@season, @weekend), notice: 'weekend was successfully updated.'
     else
       render 'edit'
     end
   end
 
   def destroy
-    @weekend = Weekend.find(params[:id])
+    @weekend = @season.weekends.find(params[:id])
     @weekend.destroy
-    redirect_to weekends_path, notice: 'weekend was successfully deleted.'
+    redirect_to season_weekends_path(@season), notice: 'weekend was successfully deleted.'
   end
 
   private
+    def get_season
+      @season = Season.find(params[:season_id])
+    end
+
     def weekend_params
-      params.require(:weekend).permit(:gp_title, :location, :timespan, :local_timezone, :local_time_offset)
+      params.require(:weekend).permit(:gp_title, :location, :timespan, :local_timezone, :local_time_offset, :season_id)
     end
 end

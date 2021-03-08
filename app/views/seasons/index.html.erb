@@ -1,0 +1,14 @@
+<h1>Seasons</h1>
+
+<% @seasons.each do |season| %>
+  <%= link_to season.name, season_path(season) %>
+  <br><br>
+<% end %>
+<br><br>
+<% if Rails.env.production? && !cookies[:authed] %>
+  <%= link_to "Authenticate", auth_path %>
+<% end %>
+<% if cookies[:authed] %>
+  <%= link_to "New Season", new_season_path %>
+<% end %>
+<br><br>

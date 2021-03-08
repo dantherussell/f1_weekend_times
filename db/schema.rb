@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_115308) do
+ActiveRecord::Schema.define(version: 2021_03_08_103042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 2020_07_09_115308) do
     t.index ["weekend_id"], name: "index_events_on_weekend_id"
   end
 
+  create_table "seasons", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "weekends", force: :cascade do |t|
     t.string "gp_title"
     t.string "location"
@@ -33,6 +39,8 @@ ActiveRecord::Schema.define(version: 2020_07_09_115308) do
     t.string "local_time_offset"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "season_id"
+    t.index ["season_id"], name: "index_weekends_on_season_id"
   end
 
 end
