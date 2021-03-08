@@ -10,6 +10,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+log/*
+tmp/*
+tmp/**/*
+tmp/restart.txt
+.DS_Store
 !/log/.keep
 !/tmp/.keep
 
