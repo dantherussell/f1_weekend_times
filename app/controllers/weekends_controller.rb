@@ -18,7 +18,7 @@ class WeekendsController < ApplicationController
   def create
     @weekend = @season.weekends.new(weekend_params)
     if @weekend.save
-      redirect_to season_weekends_path(@season), notice: 'weekend was successfully created.'
+      redirect_to season_path(@season), notice: 'weekend was successfully created.'
     else
       render 'new'
     end
