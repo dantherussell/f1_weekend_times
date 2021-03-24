@@ -10,6 +10,8 @@ class Event < ApplicationRecord
   before_save :convert_to_datetime
 
   belongs_to :weekend
+  belongs_to :session, optional: true
+  delegate :series, to: :session, allow_nil: true
 
   def circuit_time
     start_time.to_datetime.new_offset(weekend.local_time_offset).strftime("%H:%M")
@@ -31,6 +33,14 @@ class Event < ApplicationRecord
   def start_time_time_field=(time)
     # Change back to datetime friendly format
     @start_time_time_field = Time.parse(time).strftime("%H:%M:%S")
+  end
+
+  def series_name
+    series&.name || racing_class
+  end
+
+  def session_name
+    session&.name || name
   end
 
   private

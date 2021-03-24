@@ -18,3 +18,19 @@ h4 {
 .logo {
   margin-bottom: 2em;
 }
+
+input, select, .select2-container {
+  margin-top: 1em !important;
+}
+
+.select2 {
+  margin-top: 1em;
+}
+
+input[type="text"], input[type="date"], input[type="time"], select {
+  width: 30em;
+}
+
+.select2-results__group {
+  background-color: lighten(gray, 20%);
+}

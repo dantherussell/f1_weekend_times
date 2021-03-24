@@ -14,40 +14,12 @@
   <br>
 
   <div class="form-group">
-    <%= f.label :racing_class %>
+    <%= f.label :session_id %>
     <div>
-      <%= f.select :racing_class, Event::RACING_CLASSES, class: 'form-control' %>
+      <%= f.select :session_id, grouped_options_for_select(Session.all.group_by(&:series).map{ |series, sessions| [series.name, sessions.map{ |session| [session.name, session.id]}]}, f.object.session_id), class: 'form-control' %>
     </div>
   </div>
   <br>
-  <div class="event-names form-group" id="formula_1_names">
-    <%= f.label :name %>
-    <div>
-      <%= f.select :name, Event::NAMES["Formula 1"], class: 'form-control', disabled: false %>
-    </div>
-    <br>
-  </div>
-  <div class="event-names form-group" id="formula_2_names">
-    <%= f.label :name %>
-    <div>
-      <%= f.select :name, Event::NAMES["Formula 2"], class: 'form-control', disabled: true %>
-    </div>
-    <br>
-  </div>
-  <div class="event-names form-group" id="formula_3_names">
-    <%= f.label :name %>
-    <div>
-      <%= f.select :name, Event::NAMES["Formula 3"], class: 'form-control', disabled: true %>
-    </div>
-    <br>
-  </div>
-  <div class="event-names form-group" id="porsche_names">
-    <%= f.label :name %>
-    <div>
-      <%= f.select :name, Event::NAMES["Porsche Supercup"], class: 'form-control', disabled: true %>
-    </div>
-    <br>
-  </div>
   <div class="form-group">
     Date
     <div>
@@ -73,29 +45,7 @@
 <%= link_to 'Back', season_weekend_path(@season, @weekend) %>
 
 <script>
-  $("select#event_racing_class").bind("change", function() {
-    $(".event-names").hide();
-    $(".event-names select").attr("disabled", true);
-    var selection = $(this).val();
-    switch(selection) {
-      case "Formula 1":
-        $("#formula_1_names").show();
-        $("#formula_1_names select").attr("disabled", false);
-        break;
-      case "Formula 2":
-        $("#formula_2_names").show();
-        $("#formula_2_names select").attr("disabled", false);
-        break;
-      case "Formula 3":
-        $("#formula_3_names").show();
-        $("#formula_3_names select").attr("disabled", false);
-        break;
-      case "Porsche Supercup":
-        $("#porsche_names").show();
-        $("#porsche_names select").attr("disabled", false);
-        break;
-      default:
-        break;
-    }
-  }).change();
+  $(document).ready(function() {
+    $("select#event_session_id").select2();
+  });
 </script>

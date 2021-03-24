@@ -12,6 +12,7 @@
   <%= link_to "Authenticate", auth_path %>
 <% end %>
 <% if cookies[:authed] || Rails.env.development? %>
-  <%= link_to "New Season", new_season_path %>
+  <%= link_to "New Season", new_season_path %> | 
+  <%= link_to "Racing Series", series_index_path %>
 <% end %>
 <br><br>

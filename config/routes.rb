@@ -7,4 +7,8 @@ Rails.application.routes.draw do
       resources :events, except: [:index, :show]
     end
   end
+
+  resources :series do
+    resources :sessions, except: [:index, :show]
+  end
 end

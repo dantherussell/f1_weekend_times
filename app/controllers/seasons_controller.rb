@@ -32,7 +32,7 @@ class SeasonsController < ApplicationController
   end
 
   def update
-    @season = season.find(params[:id])
+    @season = Season.find(params[:id])
     if @season.update(season_params)
       redirect_to season_path(@season), notice: 'season was successfully updated.'
     else
@@ -41,7 +41,7 @@ class SeasonsController < ApplicationController
   end
 
   def destroy
-    @season = season.find(params[:id])
+    @season = Season.find(params[:id])
     @season.destroy
     redirect_to seasons_path, notice: 'season was successfully deleted.'
   end

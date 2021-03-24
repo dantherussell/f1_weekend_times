@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_103042) do
+ActiveRecord::Schema.define(version: 2021_03_24_090743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2021_03_08_103042) do
     t.bigint "weekend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "session_id"
+    t.index ["session_id"], name: "index_events_on_session_id"
     t.index ["weekend_id"], name: "index_events_on_weekend_id"
   end
 
@@ -29,6 +31,20 @@ ActiveRecord::Schema.define(version: 2021_03_08_103042) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "series", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "name"
+    t.bigint "series_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["series_id"], name: "index_sessions_on_series_id"
   end
 
   create_table "weekends", force: :cascade do |t|
