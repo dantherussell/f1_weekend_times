@@ -19,7 +19,7 @@
     <%= yield %>
 
     <h1>#WeRawrAsOne</h1>
-    <% if cookies[:authed] %>
+    <% if cookies[:authed] || Rails.env.development? %>
       Admin functions use a cookie but I store zero information besides that you've logged in here. Check the source code if you want to be sure.
     <% end %>
   </body>

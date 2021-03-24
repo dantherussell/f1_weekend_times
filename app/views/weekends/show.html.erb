@@ -7,17 +7,18 @@
   <h4><%= day %></h4>
 
   <% events.each do |event| %>
-    <%= "#{event.racing_class} #{event.name} -- #{event.circuit_time} track time" %> (<%= local_time(event.start_time, "%H:%M") %> your local time)
-    <% if cookies[:authed] %>
+    <%= "#{event.series_name} #{event.session_name} -- #{event.circuit_time} track time" %> (<%= local_time(event.start_time, "%H:%M") %> your local time)
+    <% if cookies[:authed] || Rails.env.development? %>
        | <%= link_to "Edit", edit_season_weekend_event_path(@season, @weekend, event) %> | <%= link_to "Delete", season_weekend_event_path(@season, @weekend, event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %>
     <% end %>
     <br><br>
   <% end %>
 <% end %>
 
-<% if cookies[:authed] %>
+<% if cookies[:authed] || Rails.env.development? %>
   <%= link_to "New Event", new_season_weekend_event_path(@season, @weekend) %> |
   <%= link_to "Edit Weekend", edit_season_weekend_path(@season, @weekend) %> |
   <%= link_to "Delete Weekend", season_weekend_path(@season, @weekend), method: :delete, data: { confirm: "Are you sure you want to delete this weekend?" } %>
 <% end %>
 <br><br>
+<%= link_to 'Back', season_path(@season) %>

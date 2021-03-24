@@ -5,7 +5,8 @@
   <br><br>
 <% end %>
 <br><br>
-<% if cookies[:authed] %>
+<% if cookies[:authed] || Rails.env.development? %>
   <%= link_to "New Weekend", new_season_weekend_path(@season) %>
 <% end %>
 <br><br>
+<%= link_to 'Back', root_path %>
