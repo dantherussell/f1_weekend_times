@@ -34,3 +34,11 @@ input[type="text"], input[type="date"], input[type="time"], select {
 .select2-results__group {
   background-color: lighten(gray, 20%);
 }
+
+table {
+  margin: 0 auto;
+  width: 65%;
+  th {
+    text-decoration: underline;
+  }
+}
