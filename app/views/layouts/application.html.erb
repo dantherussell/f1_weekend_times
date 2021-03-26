@@ -19,6 +19,8 @@
     <%= yield %>
 
     <h1>#WeRawrAsOne</h1>
+    Support development on <%= link_to "Patreon", "https://www.patreon.com/f1furs" %> or on <%= link_to "Ko-fi", "https://ko-fi.com/thatwingwaffl" %>
+    <br><br>
     <% if cookies[:authed] || Rails.env.development? %>
       Admin functions use a cookie but I store zero information besides that you've logged in here. Check the source code if you want to be sure.
     <% end %>
