@@ -19,7 +19,7 @@
     </thead>
     <tbody>
       <% events.each do |event| %>
-        <tr>
+        <tr <%= "class=f1" if event.series_name == "Formula 1" %>>
           <td><%= event.series_name %></td>
           <td><%= event.session_name %></td>
           <td><%= event.circuit_time %></td>
@@ -32,7 +32,7 @@
     </tbody>
   </table>
 <% end %>
-
+<br><br>
 <% if cookies[:authed] || Rails.env.development? %>
   <%= link_to "New Event", new_season_weekend_event_path(@season, @weekend) %> |
   <%= link_to "Edit Weekend", edit_season_weekend_path(@season, @weekend) %> |

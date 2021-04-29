@@ -3,6 +3,22 @@ body {
   text-align: center;
 }
 
+body.light {
+  color: black;
+  background-color: white;
+  a {
+    color: black;
+  }
+}
+
+body.dark {
+  color: white;
+  background-color: black;
+  a {
+    color: white;
+  }
+}
+
 h1 {
   font-family: 'f1-bold';
 }
@@ -17,6 +33,7 @@ h4 {
 
 .logo {
   margin-bottom: 2em;
+  margin-top: 2em;
 }
 
 input, select, .select2-container {
@@ -39,6 +56,11 @@ table {
   margin: 0 auto;
   width: 50%;
   th {
-    text-decoration: underline;
+    font-style: italic;
   }
+}
+
+.f1 {
+  font-weight: 900;
+  color: red;
 }

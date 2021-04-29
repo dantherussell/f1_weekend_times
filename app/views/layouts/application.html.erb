@@ -9,20 +9,31 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= cookies[:theme] || "light" %>">
     <div class="logo">
       <%= link_to root_path do %>
-        <%= image_tag image_url("f1_furs.png"), size: '448x84' %>
+        <% if cookies[:theme] && cookies[:theme] == "dark" %>
+          <%= image_tag image_url("f1_furs_dark.png"), size: '424x56' %>
+        <% else %>
+          <%= image_tag image_url("f1_furs_light.png"), size: '424x56' %>
+        <% end %>
       <% end %>
     </div>
 
     <%= yield %>
 
+    <br><br>
+
+    <% if cookies[:theme] && cookies[:theme] == "dark" %>
+      <%= link_to "Light Mode", root_path(theme: "light") %>
+    <% else %>
+      <%= link_to "Dark Mode", root_path(theme: "dark") %>
+    <% end %>
+
     <h1>#WeRawrAsOne</h1>
     Support development on <%= link_to "Patreon", "https://www.patreon.com/f1furs" %> or on <%= link_to "Ko-fi", "https://ko-fi.com/thatwingwaffl" %>
     <br><br>
-    <% if cookies[:authed] || Rails.env.development? %>
-      Admin functions use a cookie but I store zero information besides that you've logged in here. Check the source code if you want to be sure.
-    <% end %>
+    I legally have to disclose that this website uses cookies. They are used to display the right theme, and for admin functions.
+    <%= link_to "The source code is publicly available if you'd like to check.", "https://github.com/dantherussell/f1_weekend_times" %>
   </body>
 </html>
