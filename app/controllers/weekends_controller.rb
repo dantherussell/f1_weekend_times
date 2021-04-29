@@ -7,6 +7,11 @@ class WeekendsController < ApplicationController
     @events = @weekend.events.order('start_time ASC').group_by { |e| e.start_time.strftime("%A #{e.start_time.day.ordinalize} %B") }
   end
 
+  def print
+    @weekend = @season.weekends.find(params[:id])
+    @events = @weekend.events.order('start_time ASC').group_by { |e| e.start_time.strftime("%A #{e.start_time.day.ordinalize} %B") }
+  end
+
   def new
     @weekend = @season.weekends.new
   end

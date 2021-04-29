@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :seasons do
     resources :weekends, except: [:index] do
+      get 'print', on: :member
       resources :events, except: [:index, :show]
     end
   end
