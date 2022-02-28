@@ -1,5 +1,6 @@
 <h1><%= @weekend.gp_title %></h1>
-<h2><%= @weekend.location %>, <%= @weekend.timespan %> - <%= @weekend.local_timezone %> (<%= @weekend.local_time_offset %>)</h2>
+<h2><%= @weekend.location %>, <%= @weekend.timespan %></h2>
+<h2><%= @weekend.local_timezone %> (<%= @weekend.local_time_offset %>)</h2>
 <br>
 
 <h3>Timetable</h3>
@@ -39,5 +40,4 @@
   <%= link_to "Delete Weekend", season_weekend_path(@season, @weekend), method: :delete, data: { confirm: "Are you sure you want to delete this weekend?" } %> |
   <%= link_to "'Print' View", print_season_weekend_path(@season, @weekend) %>
 <% end %>
-<br><br>
 <%= link_to 'Back', season_path(@season) %>

@@ -12,6 +12,7 @@ class SeasonsController < ApplicationController
   def show
     @season = Season.find(params[:id])
     @weekends = @season.weekends
+    @weekends = @weekends.order(:race_number) unless @weekends.any? { |w| w.race_number.nil? }
   end
 
   def new

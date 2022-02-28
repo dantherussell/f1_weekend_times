@@ -13,8 +13,12 @@ class Event < ApplicationRecord
   belongs_to :session, optional: true
   delegate :series, to: :session, allow_nil: true
 
+  def time_offset
+    local_time_offset.nil? ? weekend.local_time_offset : local_time_offset
+  end
+
   def circuit_time
-    start_time.to_datetime.new_offset(weekend.local_time_offset).strftime("%H:%M")
+    start_time.to_datetime.new_offset(time_offset).strftime("%H:%M")
   end
 
   def start_time_date_field

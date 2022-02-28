@@ -14,6 +14,12 @@
   <br>
 
   <div class="form-group">
+    <%= f.label :race_number %> (e.g. 1)
+    <div>
+      <%= f.number_field :race_number, class: 'form-control' %>
+    </div>
+  </div><br>
+  <div class="form-group">
     <%= f.label :gp_title %> (e.g. "2020 Styrian Grand Prix")
     <div>
       <%= f.text_field :gp_title, class: 'form-control' %>

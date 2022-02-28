@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_090743) do
+ActiveRecord::Schema.define(version: 2022_02_28_103819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_090743) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "session_id"
+    t.string "local_time_offset"
     t.index ["session_id"], name: "index_events_on_session_id"
     t.index ["weekend_id"], name: "index_events_on_weekend_id"
   end
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_090743) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "season_id"
+    t.integer "race_number"
     t.index ["season_id"], name: "index_weekends_on_season_id"
   end
 
