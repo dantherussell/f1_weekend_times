@@ -50,6 +50,6 @@ class WeekendsController < ApplicationController
     end
 
     def weekend_params
-      params.require(:weekend).permit(:gp_title, :location, :timespan, :local_timezone, :local_time_offset, :season_id)
+      params.require(:weekend).permit(:gp_title, :location, :timespan, :local_timezone, :local_time_offset, :race_number, :season_id)
     end
 end
