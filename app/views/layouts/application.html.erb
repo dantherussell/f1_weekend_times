@@ -22,8 +22,8 @@
 
     <%= yield %>
 
-    <br><br>
     <% unless request.env['PATH_INFO'].include? "print" %>
+      <br><br>
       <% if cookies[:theme] && cookies[:theme] == "dark" %>
         <%= link_to "Light Mode", root_path(theme: "light") %>
       <% else %>

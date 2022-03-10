@@ -2,7 +2,6 @@
 <h2><%= @weekend.location %>, <%= @weekend.timespan %></h2>
 <h2><%= @weekend.local_timezone %> (<%= @weekend.local_time_offset %>)</h2>
 
-<h3>Timetable</h3>
 <% @events.each do |day, events| %>
   <h4><%= day %></h4>
   <table>
