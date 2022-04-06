@@ -14,6 +14,5 @@
 //= require jquery
 //= require local-time
 //= require activestorage
-//= require turbolinks
 //= require select2
 //= require_tree .

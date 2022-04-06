@@ -21,6 +21,10 @@ class Event < ApplicationRecord
     start_time.to_datetime.new_offset(time_offset).strftime("%H:%M")
   end
 
+  def date
+    start_time.to_datetime.new_offset(time_offset).strftime("%A %-d %B")
+  end
+
   def start_time_date_field
     start_time.to_date if start_time.present?
   end

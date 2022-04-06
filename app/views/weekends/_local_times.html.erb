@@ -1,0 +1,30 @@
+<div id="local_times">
+  <% local_events = @events.group_by { |e| local_time(e.start_time, "%A %-d %B") } %>
+  <% local_events.each do |day, events| %>
+    <h4><%= day %></h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>Session</th>
+          <th>Your Local Time</th>
+          <% if cookies[:authed] || Rails.env.development? %>
+            <th></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% events.each do |event| %>
+          <tr <%= "class=f1" if event.series_name == "Formula 1" %>>
+            <td><%= event.series_name %></td>
+            <td><%= event.session_name %></td>
+            <td><%= local_time(event.start_time, "%H:%M") %></td>
+            <% if cookies[:authed] || Rails.env.development? %>
+              <td><%= link_to "Edit", edit_season_weekend_event_path(@season, @weekend, event) %> | <%= link_to "Delete", season_weekend_event_path(@season, @weekend, event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
