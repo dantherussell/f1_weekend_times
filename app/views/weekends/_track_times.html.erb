@@ -1,6 +1,5 @@
 <div id="track_times">
-  <% track_events = @events.group_by { |e| e.date } %>
-  <% track_events.each do |day, events| %>
+  <% @track_events.each do |day, events| %>
     <h4><%= day %></h4>
     <table>
       <thead>

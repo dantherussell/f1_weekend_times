@@ -1,6 +1,5 @@
 <div id="local_times">
-  <% local_events = @events.group_by { |e| Nokogiri::HTML.parse(local_time(e.start_time, "%A %-d %B")).at('time').children.first.content } %>
-  <% local_events.each do |day, events| %>
+  <% @local_events.each do |day, events| %>
     <h4><%= day %></h4>
     <table>
       <thead>
