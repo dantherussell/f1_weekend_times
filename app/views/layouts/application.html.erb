@@ -35,8 +35,9 @@
     <% unless request.env['PATH_INFO'].include? "print" %>
       Support development on <%= link_to "Patreon", "https://www.patreon.com/f1furs" %> or on <%= link_to "Ko-fi", "https://ko-fi.com/thatwingwaffl" %>
       <br><br>
-      I legally have to disclose that this website uses cookies. They are used to display the right theme, and for admin functions.
-      <%= link_to "The source code is publicly available if you'd like to check.", "https://github.com/dantherussell/f1_weekend_times" %>
+      I legally have to disclose that this website uses cookies. They are used to display the right theme.
+      <br><br>
+      <%= link_to "The source code is publicly available here, if you'd like to check.", "https://github.com/dantherussell/f1_weekend_times" %>
     <% end %>
   </body>
 </html>
