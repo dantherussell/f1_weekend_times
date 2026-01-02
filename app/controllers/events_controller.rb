@@ -5,10 +5,12 @@ class EventsController < ApplicationController
 
   def new
     @event = @weekend.events.new
+    @series = Series.all
   end
 
   def edit
     @event = @weekend.events.find(params[:id])
+    @series = Series.all
   end
 
   def create
@@ -16,6 +18,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to season_weekend_path(@season, @weekend), notice: 'event was successfully created.'
     else
+      @series = Series.all
       render 'new'
     end
   end
@@ -25,6 +28,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to season_weekend_path(@season, @weekend), notice: 'event was successfully updated.'
     else
+      @series = Series.all
       render 'edit'
     end
   end

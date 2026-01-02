@@ -14,9 +14,22 @@
   <br>
 
   <div class="form-group">
+    <%= label_tag :series_id, "Series" %>
+    <div>
+      <%= select_tag :series_id,
+            options_from_collection_for_select(@series, :id, :name, @event.session&.series_id),
+            include_blank: "Select a series...",
+            class: 'form-control',
+            id: 'series_select' %>
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
     <%= f.label :session_id %>
     <div>
-      <%= f.select :session_id, grouped_options_for_select(Session.all.group_by(&:series).map{ |series, sessions| [series.name, sessions.map{ |session| [session.name, session.id]}]}, f.object.session_id), class: 'form-control' %>
+      <%= f.select :session_id, [],
+            { include_blank: "Select a session..." },
+            { class: 'form-control', id: 'event_session_id', data: { selected: f.object.session_id } } %>
     </div>
   </div>
   <br>
@@ -52,6 +65,47 @@
 
 <script>
   $(document).ready(function() {
-    $("select#event_session_id").select2();
+    var $seriesSelect = $('#series_select');
+    var $sessionSelect = $('#event_session_id');
+    var initialSessionId = $sessionSelect.data('selected');
+
+    function loadSessions(seriesId, selectedSessionId) {
+      // Destroy select2 before modifying options
+      if ($sessionSelect.hasClass('select2-hidden-accessible')) {
+        $sessionSelect.select2('destroy');
+      }
+
+      // Clear existing options
+      $sessionSelect.empty().append('<option value="">Select a session...</option>');
+
+      if (!seriesId) {
+        $sessionSelect.select2();
+        return;
+      }
+
+      // Fetch sessions for the selected series
+      fetch('/series/' + seriesId + '/sessions')
+        .then(function(response) { return response.json(); })
+        .then(function(sessions) {
+          sessions.forEach(function(session) {
+            var selected = (session.id == selectedSessionId) ? ' selected' : '';
+            $sessionSelect.append('<option value="' + session.id + '"' + selected + '>' + session.name + '</option>');
+          });
+          $sessionSelect.select2();
+        });
+    }
+
+    // Load sessions on series change
+    $seriesSelect.on('change', function() {
+      loadSessions($(this).val(), null);
+    });
+
+    // Initial load on page load
+    var initialSeriesId = $seriesSelect.val();
+    if (initialSeriesId) {
+      loadSessions(initialSeriesId, initialSessionId);
+    } else {
+      $sessionSelect.select2();
+    }
   });
 </script>

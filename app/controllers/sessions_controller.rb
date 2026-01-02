@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
   before_action :get_series
-  before_action :authenticate
+  before_action :authenticate, except: [:index]
+
+  def index
+    @sessions = @series.sessions
+    render json: @sessions.select(:id, :name)
+  end
 
   def new
     @session = @series.sessions.new

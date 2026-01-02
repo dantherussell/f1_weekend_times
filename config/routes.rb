@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
 
   resources :series do
-    resources :sessions, except: [:index, :show]
+    resources :sessions, except: [:show]
   end
 end
